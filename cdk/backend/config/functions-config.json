@@ -1,0 +1,61 @@
+[
+  {
+    "lambda": "users",
+    "routes": [
+      {
+        "path": "/user/{proxy+}",
+        "method": "ANY",
+        "queryStringParameters": [],
+        "isAuthorizerRequired": false
+      }
+    ],
+    "runtime": "NODEJS_22_X",
+    "handler": " index.handler"
+  },
+  {
+    "lambda": "requests",
+    "routes": [
+      {
+        "path": "/blood/{proxy+}",
+        "method": "ANY",
+        "queryStringParameters": [],
+        "isAuthorizerRequired": false
+      }
+    ],
+    "runtime": "NODEJS_22_X",
+    "handler": " index.handler"
+  },
+  {
+    "lambda": "donations",
+    "routes": [
+      {
+        "path": "/donation/{proxy+}",
+        "method": "ANY",
+        "queryStringParameters": [],
+        "isAuthorizerRequired": false
+      }
+    ],
+    "runtime": "NODEJS_22_X",
+    "handler": " index.handler"
+  },
+  {
+    "lambda": "chats",
+    "routes": [
+      {
+        "path": "/chat/{proxy+}",
+        "method": "ANY",
+        "queryStringParameters": [],
+        "isAuthorizerRequired": false
+      }
+    ],
+    "runtime": "NODEJS_22_X",
+    "handler": " index.handler"
+  },
+  {
+    "lambda": "notification_worker",
+    "routes": [],
+    "runtime": "NODEJS_22_X",
+    "handler": " index.handler",
+    "sqsTrigger": "notification-queue.fifo"
+  }
+]

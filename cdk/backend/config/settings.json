@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "region": "ap-south-1",
+    "account": "",
+    "stage": "dev",
+    "prefix": "prozecto-dev-",
+    "document_bucket_name":"prozecto-dev-document-bucket",
+    "secret_key":"PROZECTO_DEV_SECRET"
+  },
+  "test": {
+    "region": "ap-south-1",
+    "account": "",
+    "stage": "test",
+    "prefix": "prozecto-test-",
+    "document_bucket_name":"prozecto-test-document-bucket",
+    "secret_key":"PROZECTO_TEST_SECRET"
+  },
+  "prod": {
+    "region": "ap-south-1",
+    "account": "",
+    "stage": "prod",
+    "prefix": "prozecto-main-",
+    "document_bucket_name":"prozecto-main-document-bucket",
+    "secret_key":"PROZECTO_SECRET"
+  }
+}
