@@ -1,35 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from 'react';
+import Home from './pages/HomePage';
+import { updateSEO } from './utils/seo';
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    updateSEO({
+      title: 'Prozecto - Digital Solutions & Web Development',
+      description: 'Professional web development, mobile apps, and digital solutions. Building amazing experiences with cutting-edge technology and innovative design.',
+      keywords: 'web development, mobile apps, digital solutions, React, JavaScript, SEO, UI/UX design'
+    });
+  }, []);
 
   return (
-    <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <Home />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  );
 }
 
 export default App

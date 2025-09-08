@@ -1,0 +1,42 @@
+.carousel {
+  font-size: 15px;
+  padding-block: 8px;
+  border-block: 1px solid;
+  overflow: hidden;
+  user-select: none;
+  display: flex;
+  --gap: 20px;
+  gap: var(--gap);
+}
+
+.carousel ul {
+  list-style: none;
+  flex-shrink: 0; /* fixed typo */
+  min-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap:var(--gap);
+  animation: scroll 20s linear infinite;
+}
+
+.carousel:hover ul {
+  animation-play-state:paused; /* pause on hover */
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(calc(-100% - var(--gap))); /* fixed syntax */
+  }
+}
+
+.carousel .statement {
+  font-weight: bold;
+  margin-inline: 4px;
+}
+.carousel ul li:last-child {
+  margin-right: var(--gap);
+}
+.carousel ul + ul {
+  margin-left: var(--gap);
+}
