@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const ContactPage = () => {
   return (
-    <div className=" bg-gradient-to-r from-[#155DFC]-50 via-white to-[#155DFC]-100 flex items-start justify-center font-montserrat px-6 md:px-20 lg:px-40">
+    <div className="dark:bg-gray-900 dark:text-white flex items-start justify-center font-montserrat px-6 md:px-20 lg:px-40">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -39,9 +39,9 @@ const ContactPage = () => {
           initial={{ x: 100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="w-full md:w-1/2 p-10 bg-white"
+          className="w-full md:w-1/2 p-10 bg-white dark:border-t dark:border-r dark:border-b dark:border-white dark:bg-gray-900 dark:text-white"
         >
-          <h3 className="text-3xl font-bold mb-6 text-gray-800">Get in Touch</h3>
+          <h3 className="text-3xl dark:text-white font-bold mb-6 text-gray-800">Get in Touch</h3>
           <form className="space-y-6">
             {/* Email */}
             <motion.div

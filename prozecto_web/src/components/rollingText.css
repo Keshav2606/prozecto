@@ -1,0 +1,33 @@
+/* RollingText base */
+.rolling-text {
+  display: inline-block;
+  position: relative;
+  height: 1.5rem; /* adjust to match font-size */
+  overflow: hidden;
+  font-size: inherit;
+  line-height: 1.5rem;
+  cursor: pointer;
+}
+
+/* Inner spans */
+.rolling-text span {
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+/* Second copy hidden below */
+.rolling-text span:nth-child(2) {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: black; /* amber-400 by default */
+}
+
+/* Hover effect */
+.rolling-text:hover span:nth-child(1) {
+  transform: translateY(-100%);
+}
+
+.rolling-text:hover span:nth-child(2) {
+  transform: translateY(-100%);
+}

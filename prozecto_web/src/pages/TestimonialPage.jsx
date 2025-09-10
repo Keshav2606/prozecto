@@ -2,9 +2,9 @@ import Testimonial from "../components/Testimonial";
 
 const TestimonialPage = () => {
   return (
-    <div className="bg-white lg:px-40 px-8 md:px-20 md:py-30 py-10 font-montserrat">
+    <div className="dark:bg-gray-900 dark:text-white bg-white lg:px-40 px-8 md:px-20 md:py-30 py-10 font-montserrat">
       {/* Header */}
-      <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-gray-900 mb-15 ">
+      <h1 className=" dark:text-white text-4xl md:text-6xl lg:text-8xl font-bold text-gray-900 mb-15 ">
         Testimonial
       </h1>
 

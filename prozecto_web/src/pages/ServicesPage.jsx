@@ -7,6 +7,7 @@ import video from "../assets/video.svg"
 import web from "../assets/web.svg"
 import graphic from "../assets/graphic.svg"
 import excel from "../assets/excel.svg"
+import TextCursorFollower from "@/components/TextCursorFollower";
 
 const services = [
   { name: "Coding and Development", image:coding },
@@ -30,9 +31,9 @@ const ServicesPage = () => {
         className="text-left lg:px-40 sm:px-8 px-8 py-16"
       >
         <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-gray-800">
-          Our Services
+          <TextCursorFollower>Our Services</TextCursorFollower>
         </h1>
-        <p className="mt-4 text-lg text-gray-600">
+        <p className="mt-4 dark:text-white text-lg text-gray-600">
           We provide a wide range of professional services to bring your ideas to life.
         </p>
       </motion.div>
@@ -40,7 +41,8 @@ const ServicesPage = () => {
       {/* Services Grid */}
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 lg:px-40 sm:px-8 px-8 pb-20">
         {services.map((service, index) => (
-          <ServiceCard key={index} name={service.name} image={service.image} index={index} />
+          <ServiceCard key={index} name={service.name} image={service.image} index={index} title={service.name}
+  avatar="/avatar.jpg"/>
         ))}
       </div>
     </section>

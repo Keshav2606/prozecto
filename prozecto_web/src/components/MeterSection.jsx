@@ -42,7 +42,7 @@ const Counter = ({ target, suffix }) => {
 
 const MeterSection = () => {
   return (
-    <section className="bg-gray-50 py-20 px-10 md:px-20 lg:px-32">
+    <section className="dark:text-white dark:bg-gray-900 bg-gray-50 py-20 px-10 md:px-20 lg:px-32">
       <div className="max-w-6xl mx-auto grid grid-cols-1 h-70 md:grid-cols-3 gap-12 text-center">
         
         {/* Projects Delivered */}

@@ -1,0 +1,33 @@
+/* Container */
+.rolling-link {
+  display: inline-block;
+  position: relative;
+  height: 1.5rem; /* matches text height */
+  overflow: hidden;
+  color: #9ca3af; /* Tailwind text-gray-400 */
+  font-size: 0.875rem; /* text-sm */
+  line-height: 1.5rem;
+}
+
+/* Two stacked texts */
+.rolling-link span {
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+/* Position second text below */
+.rolling-link span:nth-child(2) {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  color: #facc15; /* Tailwind amber-400 */
+}
+
+/* Hover animation */
+.rolling-link:hover span:nth-child(1) {
+  transform: translateY(-100%);
+}
+
+.rolling-link:hover span:nth-child(2) {
+  transform: translateY(-100%);
+}

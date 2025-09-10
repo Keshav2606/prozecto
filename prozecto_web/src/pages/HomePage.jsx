@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import MeterSection from "../components/MeterSection";
 import ProductQualityAmico from "../assets/ProductQualityAmico.svg";
 import ServicesPage from "./ServicesPage";
 import Loader from "../components/Loader";
-import TestimonialPage from './TestimonialPage';
-import ContactPage from './ContactPage';
-import Carousel from '../components/Carousel';
+import TestimonialPage from "./TestimonialPage";
+import ContactPage from "./ContactPage";
+import Carousel from "../components/Carousel";
+import FAQSection from "../components/FAQSection";
+import Footer from "../components/Footer";
+import "../index.css";
+import { AuroraText } from "@/components/magicui/aurora-text";
+import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-button";
+import TextCursorFollower from "@/components/TextCursorFollower";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -20,7 +26,7 @@ const Home = () => {
     "At Prozecto, we deliver top-notch solutions in video editing, web and app development, Excel automation, and graphic design. We focus on quality, creativity, and timely delivery to help your business grow.";
 
   return (
-    <div className="min-h-screen bg-white transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
       <Navbar />
 
       {/* Hero Section */}
@@ -33,26 +39,28 @@ const Home = () => {
           className="max-w-5xl space-y-8"
         >
           <h1 className="text-5xl md:text-6xl lg:text-8xl font-montserrat font-extrabold leading-tight">
-            We are{" "}
-            <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
-              Prozecto
-            </span>
+            <TextCursorFollower>
+              We are <AuroraText>Prozecto</AuroraText>
+            </TextCursorFollower>
           </h1>
-          <p className="text-xl md:text-2xl font-montserrat font-light text-gray-600 leading-relaxed">
+          <p className="text-xl md:text-2xl font-montserrat font-medium dark:text-white text-gray-600 leading-relaxed">
             Building products that justify your pockets. <br />
-            From <span className="font-semibold">software</span> to{" "}
-            <span className="font-semibold">websites</span> to{" "}
-            <span className="font-semibold">video editing</span>, <br />
+            From{" "}
+            <span className="font-semibold">
+              <AuroraText>software</AuroraText>
+            </span>{" "}
+            to{" "}
+            <span className="font-semibold">
+              <AuroraText>websites</AuroraText>
+            </span>{" "}
+            to{" "}
+            <span className="font-semibold">
+              <AuroraText>video editing</AuroraText>
+            </span>
+            , <br />
             we deliver tailored solutions for your needs.
           </p>
-
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 text-lg md:text-xl bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-full shadow-lg font-semibold"
-          >
-            Get Started
-          </motion.button>
+          <InteractiveHoverButton>Get Started</InteractiveHoverButton>
         </motion.div>
 
         {/* Right Image Placeholder */}
@@ -71,53 +79,28 @@ const Home = () => {
       </section>
 
       <MeterSection />
+      <Carousel/>
       <ServicesPage />
 
       {/* Why Choose Prozecto Section */}
-      <section id="why-choose-prozecto" className="py-20 font-montserrat px-6 lg:px-40 md:px-20 bg-gray-50">
+      <section
+        id="why-choose-prozecto"
+        className="py-20 dark:bg-gray-900 dark:text-white font-montserrat px-6 lg:px-40 md:px-20 bg-gray-50"
+      >
         <div className="mx-auto text-left">
-          <motion.h2
-            className="text-3xl md:text-8xl font-bold mb-8 text-gray-900"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-3xl md:text-8xl font-bold mb-8 dark:text-white text-gray-900">
             Why Choose <span className="text-blue-600">Prozecto</span>?
-          </motion.h2>
-
-          <motion.p
-            className="text-lg md:text-xl font-medium text-gray-800 leading-relaxed"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.03 }
-              }
-            }}
-          >
-            {text.split("").map((char, index) => (
-              <motion.span
-                key={index}
-                variants={{
-                  hidden: { opacity: 0, color: "transparent" },
-                  visible: { opacity: 1, color: "#000" }
-                }}
-                transition={{ duration: 0.05 }}
-              >
-                {char}
-              </motion.span>
-            ))}
-          </motion.p>
+          </h2>
+          <div className="bg-white dark:bg-gray-900 text-2xl md:text-4xl md:mt-30 mt-10 md:mb-30 mb-10">
+            {text}
+          </div>
 
           {/* Bullet Points */}
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
             {[
               "✔️ High Quality Solutions",
               "✔️ Creative & Modern Approach",
-              "✔️ On-Time Delivery"
+              "✔️ On-Time Delivery",
             ].map((point, i) => (
               <motion.div
                 key={i}
@@ -133,9 +116,24 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <Carousel/>
+      <div className="w-full relative h-64">
+        {/* Top-left to bottom-right */}
+        <Carousel
+          rotation="4deg"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center"
+        />
+
+        {/* Bottom-left to top-right */}
+        <Carousel
+          rotation="-4deg"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center"
+        />
+      </div>
+
       <TestimonialPage />
-      <ContactPage/>
+      <ContactPage />
+      <FAQSection />
+      <Footer />
     </div>
   );
 };

@@ -1,0 +1,18 @@
+.word-reveal-wrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.5rem; /* spacing between words */
+}
+
+.word {
+  display: inline-block;
+  transform: translateY(120%); /* start off-screen below */
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  will-change: transform, opacity;
+}
+
+.word.animate {
+  transform: translateY(0);
+  opacity: 1;
+}

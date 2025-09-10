@@ -31,8 +31,8 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <section className="w-full max-w-3xl mx-auto px-6 py-16 text-center relative overflow-hidden">
-      <div className="h-40 flex items-center justify-center">
+    <section className=" dark:bg-gray-900  w-full max-w-3xl mx-auto px-6 py-16 text-center relative overflow-hidden">
+      <div className="h-40 flex  items-center justify-center">
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -40,12 +40,12 @@ const Testimonial = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "-100%", opacity: 0 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute w-full"
+            className=" absolute w-full"
           >
-            <p className="lg:text-3xl md:text-2xl text-xl italic text-gray-700 mb-4">
+            <p className="dark:text-white lg:text-3xl md:text-2xl text-xl italic text-gray-700 mb-4">
               "{testimonials[index].text}"
             </p>
-            <h3 className="font-semibold text-gray-900">
+            <h3 className="dark:text-white font-semibold text-gray-900">
               — {testimonials[index].name}
             </h3>
           </motion.div>

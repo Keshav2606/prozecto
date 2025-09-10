@@ -1,7 +1,14 @@
-import { useState } from 'react';
-
+import { useState } from "react";
+import {ChevronDown} from "lucide-react"
+import RollingText from "./RollingText";
+import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+
+  const toggleDropdown = (menu) => {
+    setOpenDropdown(openDropdown === menu ? null : menu);
+  };
 
   return (
     <nav className="w-full bg-yellow-500">
@@ -14,12 +21,61 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden sm:flex items-center lg:gap-10 md:gap-4">
           {/* Menu Tabs */}
-          <div className="flex lg:space-x-8 md:space-x-4 font-montserrat lg:text-xl md:text-sm font-medium border-r-2 border-black lg:pr-10 md:pr-4">
-            <div className="cursor-pointer hover:text-white">Home</div>
-            <div className="cursor-pointer hover:text-white">About Us</div>
-            <div className="cursor-pointer hover:text-white">Get a quote</div>
-            <div className="cursor-pointer hover:text-white">Terms & Conditions</div>
-            <div className="cursor-pointer hover:text-white">Blog</div>
+          <div className="flex lg:space-x-8 md:space-x-4 font-montserrat lg:text-xl md:text-sm font-medium border-r-2 border-black lg:pr-10 md:pr-4 relative">
+            <div className="cursor-pointer"><RollingText text="Home"/></div>
+
+            {/* About Us Dropdown */}
+            <div className="relative">
+              <div
+                className="cursor-pointer flex gap-2"
+                onClick={() => toggleDropdown("about")}
+              >
+                <RollingText text="About Us"/><div className="mt-1"><ChevronDown /></div>
+              </div>
+              {openDropdown === "about" && (
+                <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50">
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Our Team</div>
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Mission</div>
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Vision</div>
+                </div>
+              )}
+            </div>
+
+            {/* Get a Quote Dropdown */}
+            <div className="relative">
+              <div
+                className="cursor-pointer flex gap-2"
+                onClick={() => toggleDropdown("quote")}
+              >
+                <RollingText text="Get a Quote"/> <div className="mt-1"><ChevronDown /></div>
+              </div>
+              {openDropdown === "quote" && (
+                <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50">
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Request Form</div>
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Pricing</div>
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">FAQ</div>
+                </div>
+              )}
+            </div>
+
+            {/* Terms & Conditions Dropdown */}
+            <div className="relative">
+              <div
+                className="cursor-pointer flex gap-2"
+                onClick={() => toggleDropdown("terms")}
+              >
+                <RollingText text="Terms & Conditions"/> <div className="mt-1"><ChevronDown /></div>
+              </div>
+              {openDropdown === "terms" && (
+                <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md z-50">
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Privacy Policy</div>
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">User Agreement</div>
+                  <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Refund Policy</div>
+                </div>
+              )}
+            </div>
+
+            <div className="cursor-pointer"><RollingText text="Blog"/></div>
           </div>
 
           {/* Contact Info */}
@@ -27,6 +83,7 @@ const Navbar = () => {
             <div className="cursor-pointer hover:text-white">+91-1234567890</div>
             <div className="cursor-pointer hover:text-white">email@gmail.com</div>
           </div>
+          <ThemeToggle/>
         </div>
 
         {/* Mobile Hamburger */}
@@ -35,15 +92,31 @@ const Navbar = () => {
           className="sm:hidden text-white focus:outline-none"
         >
           <div className="w-6 h-6 flex flex-col justify-center items-center">
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-            <span className={`block w-5 h-0.5 bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
+            <span
+              className={`block w-5 h-0.5 bg-white transition-all duration-300 ${
+                isOpen ? "rotate-45 translate-y-1" : "-translate-y-1"
+              }`}
+            ></span>
+            <span
+              className={`block w-5 h-0.5 bg-white transition-all duration-300 ${
+                isOpen ? "opacity-0" : "opacity-100"
+              }`}
+            ></span>
+            <span
+              className={`block w-5 h-0.5 bg-white transition-all duration-300 ${
+                isOpen ? "-rotate-45 -translate-y-1" : "translate-y-1"
+              }`}
+            ></span>
           </div>
         </button>
       </div>
 
       {/* Mobile Slide Menu */}
-      <div className={`fixed top-0 right-0 h-full w-80 bg-red-500 transform transition-transform duration-300 z-50 ${isOpen ? 'translate-x-0' : 'translate-x-full'} sm:hidden`}>
+      <div
+        className={`fixed top-0 right-0 h-full w-80 bg-red-500 transform transition-transform duration-300 z-50 ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        } sm:hidden`}
+      >
         <div className="p-6">
           <button
             onClick={() => setIsOpen(false)}
@@ -51,19 +124,68 @@ const Navbar = () => {
           >
             ×
           </button>
-          
-          <div className="mt-12 space-y-6">
-            <div className="text-white font-montserrat text-lg font-light border-b border-white pb-4">
-              <div className="py-2 cursor-pointer hover:text-yellow-300">Home</div>
-              <div className="py-2 cursor-pointer hover:text-yellow-300">About Us</div>
-              <div className="py-2 cursor-pointer hover:text-yellow-300">Get a quote</div>
-              <div className="py-2 cursor-pointer hover:text-yellow-300">Terms & Conditions</div>
-              <div className="py-2 cursor-pointer hover:text-yellow-300">Blog</div>
+
+          <div className="mt-12 space-y-6 text-white font-montserrat text-lg font-light">
+            <div className="py-2 cursor-pointer hover:text-yellow-300">Home</div>
+
+            {/* Mobile Dropdowns */}
+            <div>
+              <div
+                className="py-2 cursor-pointer hover:text-yellow-300"
+                onClick={() => toggleDropdown("about")}
+              >
+                About Us
+              </div>
+              {openDropdown === "about" && (
+                <div className="pl-4 space-y-2 text-sm">
+                  <div className="cursor-pointer">Our Team</div>
+                  <div className="cursor-pointer">Mission</div>
+                  <div className="cursor-pointer">Vision</div>
+                </div>
+              )}
             </div>
-            
-            <div className="text-white font-montserrat text-lg font-thin">
-              <div className="py-2 cursor-pointer hover:text-yellow-300">+91-1234567890</div>
-              <div className="py-2 cursor-pointer hover:text-yellow-300">email@gmail.com</div>
+
+            <div>
+              <div
+                className="py-2 cursor-pointer hover:text-yellow-300"
+                onClick={() => toggleDropdown("quote")}
+              >
+                Get a Quote
+              </div>
+              {openDropdown === "quote" && (
+                <div className="pl-4 space-y-2 text-sm">
+                  <div className="cursor-pointer">Request Form</div>
+                  <div className="cursor-pointer">Pricing</div>
+                  <div className="cursor-pointer">FAQ</div>
+                </div>
+              )}
+            </div>
+
+            <div>
+              <div
+                className="py-2 cursor-pointer hover:text-yellow-300"
+                onClick={() => toggleDropdown("terms")}
+              >
+                Terms & Conditions
+              </div>
+              {openDropdown === "terms" && (
+                <div className="pl-4 space-y-2 text-sm">
+                  <div className="cursor-pointer">Privacy Policy</div>
+                  <div className="cursor-pointer">User Agreement</div>
+                  <div className="cursor-pointer">Refund Policy</div>
+                </div>
+              )}
+            </div>
+
+            <div className="py-2 cursor-pointer hover:text-yellow-300">Blog</div>
+
+            <div className="pt-6 font-thin">
+              <div className="py-2 cursor-pointer hover:text-yellow-300">
+                +91-1234567890
+              </div>
+              <div className="py-2 cursor-pointer hover:text-yellow-300">
+                email@gmail.com
+              </div>
             </div>
           </div>
         </div>
