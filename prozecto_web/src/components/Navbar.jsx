@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {ChevronDown} from "lucide-react"
 import RollingText from "./RollingText";
 import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const location = useLocation();
+
+  const isActive = (path) => location.pathname === path;
 
   const toggleDropdown = (menu) => {
     setOpenDropdown(openDropdown === menu ? null : menu);
@@ -34,6 +38,7 @@ const Navbar = () => {
               </div>
               {openDropdown === "about" && (
                 <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50">
+                  <Link to="/about-us" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">About Us</Link>
                   <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Our Team</div>
                   <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Mission</div>
                   <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Vision</div>
@@ -68,6 +73,7 @@ const Navbar = () => {
               </div>
               {openDropdown === "terms" && (
                 <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-md z-50">
+                  <Link to="/terms-and-conditions" className="block px-4 py-2 hover:bg-gray-200 cursor-pointer">Terms & Conditions</Link>
                   <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Privacy Policy</div>
                   <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">User Agreement</div>
                   <div className="px-4 py-2 hover:bg-gray-200 cursor-pointer">Refund Policy</div>
@@ -75,7 +81,9 @@ const Navbar = () => {
               )}
             </div>
 
-            <div className="cursor-pointer"><RollingText text="Blog"/></div>
+            <Link to="/blog" className={`cursor-pointer ${isActive('/blog') ? 'text-blue-600' : ''}`}>
+              <RollingText text="Blog"/>
+            </Link>
           </div>
 
           {/* Contact Info */}
@@ -177,7 +185,9 @@ const Navbar = () => {
               )}
             </div>
 
-            <div className="py-2 cursor-pointer hover:text-yellow-300">Blog</div>
+            <Link to="/blog" className={`py-2 cursor-pointer hover:text-yellow-300 block ${isActive('/blog') ? 'text-blue-400' : ''}`} onClick={() => setIsOpen(false)}>
+              Blog
+            </Link>
 
             <div className="pt-6 font-thin">
               <div className="py-2 cursor-pointer hover:text-yellow-300">

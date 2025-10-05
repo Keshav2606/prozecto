@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import MeterSection from "../components/MeterSection";
@@ -16,7 +16,15 @@ import { InteractiveHoverButton } from "@/components/magicui/interactive-hover-b
 import TextCursorFollower from "@/components/TextCursorFollower";
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(() => {
+    return !sessionStorage.getItem('siteLoaded');
+  });
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('siteLoaded')) {
+      sessionStorage.setItem('siteLoaded', 'true');
+    }
+  }, []);
 
   if (loading) {
     return <Loader onComplete={() => setLoading(false)} />;
@@ -116,20 +124,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div className="w-full relative h-64">
-        {/* Top-left to bottom-right */}
-        <Carousel
-          rotation="4deg"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center"
-        />
-
-        {/* Bottom-left to top-right */}
-        <Carousel
-          rotation="-4deg"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 origin-center"
-        />
-      </div>
-
       <TestimonialPage />
       <ContactPage />
       <FAQSection />

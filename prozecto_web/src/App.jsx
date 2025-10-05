@@ -1,20 +1,21 @@
-import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/HomePage';
-import { updateSEO } from './utils/seo';
+import AboutUs from './pages/AboutUs';
+import Blog from './pages/Blog';
+import TermsAndConditions from './pages/TermsAndConditions';
 
 function App() {
-  useEffect(() => {
-    updateSEO({
-      title: 'Prozecto - Digital Solutions & Web Development',
-      description: 'Professional web development, mobile apps, and digital solutions. Building amazing experiences with cutting-edge technology and innovative design.',
-      keywords: 'web development, mobile apps, digital solutions, React, JavaScript, SEO, UI/UX design'
-    });
-  }, []);
-
   return (
+    <Router>
       <div>
-        <Home />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        </Routes>
       </div>
+    </Router>
   );
 }
 

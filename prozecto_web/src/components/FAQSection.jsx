@@ -1,36 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RollingTextOnView from "./RollingTextOnView";
-
-const faqs = [
-  {
-    question: "What types of software development services do you provide?",
-    answer:
-      "We build custom software solutions tailored to your business needs, including desktop applications, SaaS platforms, and enterprise-level tools.",
-  },
-  {
-    question: "Do you offer web and app development?",
-    answer:
-      "Yes! We design and develop responsive websites, e-commerce platforms, and mobile applications for both iOS and Android.",
-  },
-  {
-    question: "Can you help with graphic design?",
-    answer:
-      "Our team provides creative and professional graphic design services, including branding, UI/UX design, logos, and marketing materials.",
-  },
-  {
-    question: "Do you create 3D models?",
-    answer:
-      "Absolutely! We specialize in creating high-quality 3D models for games, animations, product design, and virtual experiences.",
-  },
-  {
-    question: "Can you work with spreadsheets and Excel automation?",
-    answer:
-      "Yes, we create advanced Excel solutions, custom formulas, macros, and data visualizations to simplify your workflows.",
-  },
-];
+import api from "../services/api";
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState(null);
+  const [faqs, setFaqs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchFAQs();
+  }, []);
+
+  const fetchFAQs = async () => {
+    try {
+      const data = await api.faqs.getAll();
+      setFaqs(data);
+    } catch (error) {
+      console.error('Error fetching FAQs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const toggleFAQ = (index) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -62,7 +52,16 @@ const FAQSection = () => {
       </h2>
 
       <div className="space-y-4 mt-20 dark:bg-gray-900 dark:text-white">
-        {faqs.map((faq, index) => (
+        {loading ? (
+          <div className="text-center py-8">
+            <p className="text-gray-600 dark:text-gray-300">Loading FAQs...</p>
+          </div>
+        ) : faqs.length === 0 ? (
+          <div className="text-center py-8">
+            <p className="text-gray-600 dark:text-gray-300">No FAQs available.</p>
+          </div>
+        ) : (
+          faqs.map((faq, index) => (
           <div
             key={index}
             className="border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-2xl shadow-sm transition-transform duration-300 hover:scale-[1.02] hover:shadow-md"
@@ -86,7 +85,8 @@ const FAQSection = () => {
               </div>
             )}
           </div>
-        ))}
+          ))
+        )}
       </div>
     </section>
   );
