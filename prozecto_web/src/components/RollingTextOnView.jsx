@@ -27,10 +27,10 @@ const RollingTextOnView = ({ text, className = "" }) => {
     <span
       ref={ref}
       className={`rolling-text-onview ${animate ? "animate" : ""} ${className}`}
-      style={{ height: "auto" }}
+      style={{ height: "auto", color: document.documentElement.classList.contains('dark') ? 'white' : 'black' }}
     >
-      <span>{text}</span>
-      <span>{text}</span>
+      <span style={{ color: document.documentElement.classList.contains('dark') ? 'white' : 'black' }}>{text}</span>
+      <span style={{ color: document.documentElement.classList.contains('dark') ? 'white' : 'black' }}>{text}</span>
     </span>
   );
 

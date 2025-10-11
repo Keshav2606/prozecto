@@ -7,6 +7,7 @@ import Connection from './pages/Connection';
 import FAQs from './pages/FAQs';
 import TermsAndConditions from './pages/TermsAndConditions';
 import Blog from './pages/Blog';
+import QuoteRequests from './pages/QuoteRequests';
 import Settings from './pages/Settings';
 
 const darkTheme = createTheme({
@@ -26,10 +27,12 @@ function App() {
         return <Connection />;
       case 'FAQs':
         return <FAQs />;
-      case 'Terms and Conditions':
+      case 'Legal Conditions':
         return <TermsAndConditions />;
       case 'Blog':
         return <Blog />;
+      case 'Quote Requests':
+        return <QuoteRequests />;
       case 'Settings':
         return <Settings />;
       default:

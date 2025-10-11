@@ -68,19 +68,20 @@ const FAQSection = () => {
           >
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full flex justify-between items-center p-5 text-left text-xl text-gray-800 dark:text-white transition-colors duration-300 hover:text-blue-600"
+              className="w-full flex justify-between items-center p-5 text-left text-xl transition-colors duration-300 hover:text-blue-600"
+              style={{ color: document.documentElement.classList.contains('dark') ? 'white' : 'black' }}
             >
               {faq.question}
               <span
                 className={`transform transition-transform duration-300 ${
-                  openIndex === index ? "rotate-180 text-blue-600" : "rotate-0"
+                  openIndex === index ? "rotate-180 text-blue-600" : "rotate-0 text-black dark:text-white"
                 }`}
               >
                 ▼
               </span>
             </button>
             {openIndex === index && (
-              <div className="px-5 pb-5 text-gray-600 dark:text-gray-300 animate-fadeIn">
+              <div className="px-5 pb-5 animate-fadeIn" style={{ color: document.documentElement.classList.contains('dark') ? '#d1d5db' : 'black' }}>
                 {faq.answer}
               </div>
             )}
