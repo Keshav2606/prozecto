@@ -23,11 +23,19 @@ const testimonialRoutes = require('./routes/testimonial.route');
 const faqRoutes = require('./routes/faq.route');
 const blogRoutes = require('./routes/blog.route');
 const termsRoutes = require('./routes/termsAndConditions.route');
+const quoteRequestRoutes = require('./routes/quoteRequest.route');
+const privacyPolicyRoutes = require('./routes/privacyPolicy.route');
+const userAgreementRoutes = require('./routes/userAgreement.route');
+const refundPolicyRoutes = require('./routes/refundPolicy.route');
 app.use('/api', exampleRoutes);
 app.use('/api', testimonialRoutes);
 app.use('/api', faqRoutes);
 app.use('/api', blogRoutes);
 app.use('/api', termsRoutes);
+app.use('/api', quoteRequestRoutes);
+app.use('/api', privacyPolicyRoutes);
+app.use('/api', userAgreementRoutes);
+app.use('/api', refundPolicyRoutes);
 
 // Basic route
 app.get('/', (req, res) => {

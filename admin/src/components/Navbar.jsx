@@ -5,8 +5,9 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
     'Testimonials',
     'Connection',
     'FAQs', 
-    'Terms and Conditions',
+    'Legal Conditions',
     'Blog',
+    'Quote Requests',
     'Settings'
   ];
 

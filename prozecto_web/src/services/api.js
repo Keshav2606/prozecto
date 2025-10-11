@@ -19,6 +19,11 @@ export const api = {
   // FAQ methods
   faqs: {
     getAll: () => api.get('/faqs')
+  },
+
+  // Quote Request methods
+  quoteRequests: {
+    create: (data) => api.post('/quote-requests', data)
   }
 };
 

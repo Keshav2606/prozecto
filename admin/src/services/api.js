@@ -49,6 +49,32 @@ export const api = {
     getAll: () => api.get('/terms'),
     create: (data) => api.post('/terms', data),
     update: (id, data) => api.put(`/terms/${id}`, data)
+  },
+
+  // Quote Requests specific methods
+  quoteRequests: {
+    getAll: () => api.get('/quote-requests')
+  },
+
+  // Privacy Policy specific methods
+  privacyPolicies: {
+    getAll: () => api.get('/privacy-policies'),
+    create: (data) => api.post('/privacy-policies', data),
+    update: (id, data) => api.put(`/privacy-policies/${id}`, data)
+  },
+
+  // User Agreement specific methods
+  userAgreements: {
+    getAll: () => api.get('/user-agreements'),
+    create: (data) => api.post('/user-agreements', data),
+    update: (id, data) => api.put(`/user-agreements/${id}`, data)
+  },
+
+  // Refund Policy specific methods
+  refundPolicies: {
+    getAll: () => api.get('/refund-policies'),
+    create: (data) => api.post('/refund-policies', data),
+    update: (id, data) => api.put(`/refund-policies/${id}`, data)
   }
 };
 
