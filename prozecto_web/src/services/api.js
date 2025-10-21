@@ -21,9 +21,38 @@ export const api = {
     getAll: () => api.get('/faqs')
   },
 
+  // Blog methods
+  blogs: {
+    getAll: () => api.get('/blogs')
+  },
+
   // Quote Request methods
   quoteRequests: {
     create: (data) => api.post('/quote-requests', data)
+  },
+
+  // Policy methods
+  terms: {
+    getAll: () => api.get('/terms')
+  },
+  privacyPolicies: {
+    getAll: () => api.get('/privacy-policies')
+  },
+  userAgreements: {
+    getAll: () => api.get('/user-agreements')
+  },
+  refundPolicies: {
+    getAll: () => api.get('/refund-policies')
+  },
+
+  // Settings methods
+  settings: {
+    getAll: () => api.get('/settings')
+  },
+
+  // Contact methods
+  contact: {
+    send: (data) => api.post('/contact', data)
   }
 };
 

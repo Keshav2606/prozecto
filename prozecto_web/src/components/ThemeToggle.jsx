@@ -2,29 +2,27 @@ import { useEffect, useState } from "react";
 
 const ThemeToggle = () => {
   const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "light"
+    localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light")
   );
 
   useEffect(() => {
-    const root = document.documentElement; // <html>
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-    localStorage.setItem("theme", theme); // persist user preference
+    const root = document.documentElement;
+    if (theme === "dark") root.classList.add("dark");
+    else root.classList.remove("dark");
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
 
   return (
     <button
       onClick={toggleTheme}
-      className="px-4 py-2 bg-background text-foreground border border-border rounded-lg hover:bg-accent transition-colors"
+      className="px-4 lg:px-2 lg:py-1 py-2 bg-background text-foreground border border-border rounded-lg hover:bg-accent transition-colors"
     >
-      {theme === "light" ? "🌙" : "☀️"} {theme === "light" ? "Dark" : "Light"}
+      {theme === "dark" ? "🌙" : "☀️"}
     </button>
   );
 };

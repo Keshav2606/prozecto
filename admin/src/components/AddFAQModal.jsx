@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Dialog, 
   DialogTitle, 
@@ -10,12 +10,23 @@ import {
 } from '@mui/material';
 import api from '../services/api';
 
-const AddFAQModal = ({ open, onClose, onAdd }) => {
+const AddFAQModal = ({ open, onClose, onAdd, editingFAQ }) => {
   const [formData, setFormData] = useState({
     question: '',
     answer: ''
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (editingFAQ) {
+      setFormData({
+        question: editingFAQ.question,
+        answer: editingFAQ.answer
+      });
+    } else {
+      setFormData({ question: '', answer: '' });
+    }
+  }, [editingFAQ, open]);
 
   const handleChange = (e) => {
     setFormData({
@@ -27,12 +38,17 @@ const AddFAQModal = ({ open, onClose, onAdd }) => {
   const handleSubmit = async () => {
     setLoading(true);
     try {
-      const newFAQ = await api.faqs.create(formData);
-      onAdd(newFAQ);
+      if (editingFAQ) {
+        const updatedFAQ = await api.faqs.update(editingFAQ._id, formData);
+        onAdd(updatedFAQ, true);
+      } else {
+        const newFAQ = await api.faqs.create(formData);
+        onAdd(newFAQ, false);
+      }
       setFormData({ question: '', answer: '' });
       onClose();
     } catch (error) {
-      console.error('Error creating FAQ:', error);
+      console.error('Error saving FAQ:', error);
     } finally {
       setLoading(false);
     }
@@ -40,7 +56,7 @@ const AddFAQModal = ({ open, onClose, onAdd }) => {
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle className="bg-gray-800 text-white">Add FAQ</DialogTitle>
+      <DialogTitle className="bg-gray-800 text-white">{editingFAQ ? 'Edit FAQ' : 'Add FAQ'}</DialogTitle>
       <DialogContent className="bg-gray-800 text-white">
         <Box className="space-y-4 mt-4">
           <TextField
@@ -66,7 +82,7 @@ const AddFAQModal = ({ open, onClose, onAdd }) => {
       <DialogActions className="bg-gray-800">
         <Button onClick={onClose} className="text-gray-300" disabled={loading}>Cancel</Button>
         <Button onClick={handleSubmit} variant="contained" className="bg-blue-600" disabled={loading}>
-          {loading ? 'Adding...' : 'Add FAQ'}
+          {loading ? (editingFAQ ? 'Updating...' : 'Adding...') : (editingFAQ ? 'Update FAQ' : 'Add FAQ')}
         </Button>
       </DialogActions>
     </Dialog>

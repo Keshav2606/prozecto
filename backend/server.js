@@ -27,6 +27,8 @@ const quoteRequestRoutes = require('./routes/quoteRequest.route');
 const privacyPolicyRoutes = require('./routes/privacyPolicy.route');
 const userAgreementRoutes = require('./routes/userAgreement.route');
 const refundPolicyRoutes = require('./routes/refundPolicy.route');
+const settingsRoutes = require('./routes/settings.route');
+const contactRoutes = require('./routes/contact.route');
 app.use('/api', exampleRoutes);
 app.use('/api', testimonialRoutes);
 app.use('/api', faqRoutes);
@@ -36,6 +38,8 @@ app.use('/api', quoteRequestRoutes);
 app.use('/api', privacyPolicyRoutes);
 app.use('/api', userAgreementRoutes);
 app.use('/api', refundPolicyRoutes);
+app.use('/api', settingsRoutes);
+app.use('/api', contactRoutes);
 
 // Basic route
 app.get('/', (req, res) => {

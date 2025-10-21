@@ -20,6 +20,17 @@ const createFAQ = async (req, res) => {
   }
 };
 
+const updateFAQ = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { question, answer } = req.body;
+    const faq = await FAQ.findByIdAndUpdate(id, { question, answer }, { new: true });
+    res.json(faq);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 const deleteFAQ = async (req, res) => {
   try {
     const { id } = req.params;
@@ -33,5 +44,6 @@ const deleteFAQ = async (req, res) => {
 module.exports = {
   getFAQs,
   createFAQ,
+  updateFAQ,
   deleteFAQ
 };

@@ -33,6 +33,7 @@ export const api = {
   faqs: {
     getAll: () => api.get('/faqs'),
     create: (data) => api.post('/faqs', data),
+    update: (id, data) => api.put(`/faqs/${id}`, data),
     delete: (id) => api.delete(`/faqs/${id}`)
   },
 
@@ -75,6 +76,12 @@ export const api = {
     getAll: () => api.get('/refund-policies'),
     create: (data) => api.post('/refund-policies', data),
     update: (id, data) => api.put(`/refund-policies/${id}`, data)
+  },
+
+  // Settings specific methods
+  settings: {
+    getAll: () => api.get('/settings'),
+    update: (data) => api.put('/settings', data)
   }
 };
 
