@@ -4,7 +4,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SecurityIcon from '@mui/icons-material/Security';
 import api from '../services/api';
+import ChangeCredentialsModal from '../components/ChangeCredentialsModal';
 
 const Settings = () => {
   const [contactInfo, setContactInfo] = useState({
@@ -16,6 +18,7 @@ const Settings = () => {
   const [editingContact, setEditingContact] = useState({ email: false, phone: false });
   const [editingSocial, setEditingSocial] = useState({});
   const [loading, setLoading] = useState(false);
+  const [credentialsModalOpen, setCredentialsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchSettings();
@@ -96,6 +99,26 @@ const Settings = () => {
       <Typography variant="h4" className="text-white mb-6">
         Settings
       </Typography>
+
+      {/* Admin Security */}
+      <Paper className="p-6 bg-gray-800 text-white mb-6">
+        <Typography variant="h5" className="mb-4">
+          Admin Security
+        </Typography>
+        <Box className="flex items-center gap-2">
+          <Button
+            onClick={() => setCredentialsModalOpen(true)}
+            variant="contained"
+            className="bg-red-600 hover:bg-red-700"
+            startIcon={<SecurityIcon />}
+          >
+            Change Email & Password
+          </Button>
+          <Typography variant="body2" className="text-gray-400">
+            Update your admin login credentials
+          </Typography>
+        </Box>
+      </Paper>
 
       {/* Contact Information */}
       <Paper className="p-6 bg-gray-800 text-white mb-6">
@@ -282,6 +305,11 @@ const Settings = () => {
           </Typography>
         )}
       </Paper>
+      
+      <ChangeCredentialsModal 
+        open={credentialsModalOpen} 
+        onClose={() => setCredentialsModalOpen(false)} 
+      />
     </Box>
   );
 };

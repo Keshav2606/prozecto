@@ -82,6 +82,19 @@ export const api = {
   settings: {
     getAll: () => api.get('/settings'),
     update: (data) => api.put('/settings', data)
+  },
+
+  // Contact specific methods
+  contact: {
+    send: (data) => api.post('/contact', data)
+  },
+
+  // Authentication specific methods
+  auth: {
+    login: (credentials) => api.post('/auth/login', credentials),
+    logout: () => api.post('/auth/logout'),
+    updateCredentials: (data) => api.put('/auth/credentials', data),
+    getProfile: () => api.get('/auth/profile')
   }
 };
 

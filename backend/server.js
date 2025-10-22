@@ -1,10 +1,15 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const connectDB = require('./lib/db');
+const { initializeAdmin } = require('./controllers/auth.controller');
 
 // Connect to MongoDB
 connectDB();
+
+// Initialize default admin
+initializeAdmin();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,6 +21,7 @@ app.use(cors({
 }));
 
 app.use(express.json());
+app.use(cookieParser());
 
 // Routes
 const exampleRoutes = require('./routes/exampleRoutes');
@@ -29,6 +35,7 @@ const userAgreementRoutes = require('./routes/userAgreement.route');
 const refundPolicyRoutes = require('./routes/refundPolicy.route');
 const settingsRoutes = require('./routes/settings.route');
 const contactRoutes = require('./routes/contact.route');
+const authRoutes = require('./routes/auth.route');
 app.use('/api', exampleRoutes);
 app.use('/api', testimonialRoutes);
 app.use('/api', faqRoutes);
@@ -40,6 +47,7 @@ app.use('/api', userAgreementRoutes);
 app.use('/api', refundPolicyRoutes);
 app.use('/api', settingsRoutes);
 app.use('/api', contactRoutes);
+app.use('/api', authRoutes);
 
 // Basic route
 app.get('/', (req, res) => {
