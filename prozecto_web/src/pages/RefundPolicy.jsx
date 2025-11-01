@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
-import { ShieldCheck, Scroll, BookOpen, Star } from "lucide-react";
+import { CreditCard, RotateCcw, Clock, DollarSign } from "lucide-react";
 import Navbar from "../components/Navbar";
 import api from "../services/api";
 
-const TermsAndConditions = () => {
+const RefundPolicy = () => {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -25,25 +25,23 @@ const TermsAndConditions = () => {
 
   const fetchContent = async () => {
     try {
-      console.log('Fetching terms and conditions...');
-      const data = await api.terms.getAll();
-      console.log('Terms data received:', data);
+      const data = await api.refundPolicies.getAll();
       setContent(
-        data[0]?.content || "Terms and conditions content will be available soon."
+        data[0]?.content || "Refund policy content will be available soon."
       );
     } catch (error) {
-      console.error("Error fetching terms:", error);
-      setContent("Error loading terms. Please try again later.");
+      console.error("Error fetching refund policy:", error);
+      setContent("Error loading refund policy. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
   const sections = [
-    { icon: <ShieldCheck className="w-6 h-6 text-teal-500" />, title: "Security & Privacy" },
-    { icon: <Scroll className="w-6 h-6 text-yellow-500" />, title: "User Obligations" },
-    { icon: <BookOpen className="w-6 h-6 text-purple-500" />, title: "Content Ownership" },
-    { icon: <Star className="w-6 h-6 text-pink-500" />, title: "Disclaimer & Liability" },
+    { icon: <CreditCard className="w-6 h-6 text-green-500" />, title: "Payment Methods" },
+    { icon: <RotateCcw className="w-6 h-6 text-blue-500" />, title: "Refund Process" },
+    { icon: <Clock className="w-6 h-6 text-orange-500" />, title: "Processing Time" },
+    { icon: <DollarSign className="w-6 h-6 text-purple-500" />, title: "Refund Amount" },
   ];
 
   return (
@@ -60,7 +58,7 @@ const TermsAndConditions = () => {
             transition={{ repeat: Infinity, duration: 15 }}
             className="absolute top-20 left-10 text-8xl select-none"
           >
-            📜
+            💳
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -68,7 +66,7 @@ const TermsAndConditions = () => {
             transition={{ repeat: Infinity, duration: 12 }}
             className="absolute bottom-10 right-20 text-8xl select-none"
           >
-            🛡️
+            🔄
           </motion.div>
         </>
       )}
@@ -80,7 +78,7 @@ const TermsAndConditions = () => {
         transition={{ duration: 1 }}
         className="text-5xl md:text-6xl font-extrabold mb-12 text-center"
       >
-        Terms <span className="text-teal-500">and Conditions</span>
+        Refund <span className="text-green-500">Policy</span>
       </motion.h1>
 
       {/* Animated Section Cards */}
@@ -94,7 +92,7 @@ const TermsAndConditions = () => {
             whileHover={isMobile ? {} : { scale: 1.05, rotate: 1 }}
             className="rounded-3xl border dark:border-gray-700 border-gray-200 bg-gray-50 dark:bg-gray-900 p-6 shadow-lg hover:shadow-2xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 cursor-pointer relative"
           >
-            <div className="flex items-center justify-center w-12 h-12 mb-4 mx-auto bg-teal-100 dark:bg-teal-900 rounded-full">
+            <div className="flex items-center justify-center w-12 h-12 mb-4 mx-auto bg-green-100 dark:bg-green-900 rounded-full">
               {item.icon}
             </div>
             <h3 className="text-2xl font-bold mb-2 text-center">{item.title}</h3>
@@ -105,7 +103,7 @@ const TermsAndConditions = () => {
         ))}
       </div>
 
-      {/* Terms Markdown Content */}
+      {/* Refund Policy Markdown Content */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -113,13 +111,13 @@ const TermsAndConditions = () => {
         className="max-w-4xl mx-auto my-8"
       >
         {loading ? (
-          <p className="text-center text-xl">Fetching terms and conditions...</p>
+          <p className="text-center text-xl">Fetching refund policy...</p>
         ) : content ? (
           <div className="prose dark:prose-invert prose-lg text-gray-800 dark:text-gray-200">
             <ReactMarkdown>{content}</ReactMarkdown>
           </div>
         ) : (
-          <p className="text-center text-xl">No terms available at the moment.</p>
+          <p className="text-center text-xl">No refund policy available at the moment.</p>
         )}
       </motion.div>
       </div>
@@ -127,4 +125,4 @@ const TermsAndConditions = () => {
   );
 };
 
-export default TermsAndConditions;
+export default RefundPolicy;

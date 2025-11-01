@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 import companyImg from "../assets/company.jpeg";
 import company2Img from "../assets/company2.jpg";
 
@@ -13,7 +14,9 @@ const fadeUp = {
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white font-montserrat">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white font-montserrat">
       {/* Hero Section with Overlayed Text */}
       <div className="relative w-full h-[70vh] overflow-hidden flex items-center justify-center">
         <img
@@ -25,7 +28,7 @@ const AboutUs = () => {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="absolute text-5xl md:text-9xl font-bold text-white text-center"
+          className="absolute text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-white text-center"
         >
           About{" "}
           <span className="text-blue-500 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)]">
@@ -37,9 +40,9 @@ const AboutUs = () => {
         variants={fadeUp}
         initial="hidden"
         animate="visible"
-        className="absolute max-w-4xl mx-auto py-16 px-[6vw] -bottom-[5%] sm:bottom-[10%]"
+        className="absolute max-w-6xl mx-auto py-16 md:py-6 lg:py-2 2xl:py-30 px-[6vw] -bottom-[5%] sm:bottom-[10%] lg:bottom-[0%]"
       >
-        <p className="text-sm md:text-xl leading-relaxed text-center text-white dark:text-gray-300">
+        <p className="text-sm md:text-md lg:text-lg xl:text-xl leading-relaxed text-center text-white dark:text-gray-300">
           Welcome to Prozecto
           , where innovation meets precision. We craft scalable, future-ready
           digital solutions — from software and websites to creative design and
@@ -144,7 +147,8 @@ const AboutUs = () => {
           solutions that inspire growth and lasting success.
         </p>
       </motion.section>
-    </div>
+      </div>
+    </>
   );
 };
 

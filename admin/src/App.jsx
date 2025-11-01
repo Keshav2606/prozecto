@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 import Testimonials from './pages/Testimonials';
 import Connection from './pages/Connection';
@@ -41,15 +43,19 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <div className="min-h-screen bg-gray-900">
-        <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
-        <main>
-          {renderPage()}
-        </main>
-      </div>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <ProtectedRoute>
+          <div className="min-h-screen bg-gray-900">
+            <Navbar currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            <main>
+              {renderPage()}
+            </main>
+          </div>
+        </ProtectedRoute>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 

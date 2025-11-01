@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Typography, Box, Button, Card, CardContent, Grid, Accordion, AccordionSummary, AccordionDetails, IconButton } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddFAQModal from '../components/AddFAQModal';
 import api from '../services/api';
@@ -9,6 +10,7 @@ const FAQs = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [faqs, setFaqs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editingFAQ, setEditingFAQ] = useState(null);
 
   useEffect(() => {
     fetchFAQs();
@@ -25,8 +27,22 @@ const FAQs = () => {
     }
   };
 
-  const handleAddFAQ = (newFAQ) => {
-    setFaqs([newFAQ, ...faqs]);
+  const handleEdit = (faq) => {
+    setEditingFAQ(faq);
+    setModalOpen(true);
+  };
+
+  const handleAddFAQ = (faq, isEdit) => {
+    if (isEdit) {
+      setFaqs(faqs.map(f => f._id === faq._id ? faq : f));
+    } else {
+      setFaqs([faq, ...faqs]);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setEditingFAQ(null);
   };
 
   const handleDelete = async (id) => {
@@ -64,16 +80,28 @@ const FAQs = () => {
               <AccordionSummary expandIcon={<ExpandMoreIcon className="text-white" />}>
                 <Box className="flex justify-between items-center w-full mr-4">
                   <Typography variant="h6">{faq.question}</Typography>
-                  <IconButton 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleDelete(faq._id);
-                    }}
-                    className="text-gray-400 hover:text-red-400"
-                    size="small"
-                  >
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
+                  <Box className="flex gap-1">
+                    <IconButton 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleEdit(faq);
+                      }}
+                      className="text-gray-400 hover:text-blue-400"
+                      size="small"
+                    >
+                      <EditIcon fontSize="small" />
+                    </IconButton>
+                    <IconButton 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(faq._id);
+                      }}
+                      className="text-gray-400 hover:text-red-400"
+                      size="small"
+                    >
+                      <DeleteIcon fontSize="small" />
+                    </IconButton>
+                  </Box>
                 </Box>
               </AccordionSummary>
               <AccordionDetails>
@@ -93,8 +121,9 @@ const FAQs = () => {
 
       <AddFAQModal 
         open={modalOpen}
-        onClose={() => setModalOpen(false)}
+        onClose={handleCloseModal}
         onAdd={handleAddFAQ}
+        editingFAQ={editingFAQ}
       />
     </Box>
   );

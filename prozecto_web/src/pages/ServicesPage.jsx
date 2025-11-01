@@ -28,7 +28,7 @@ const ServicesPage = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-left lg:px-40 sm:px-8 px-8 py-16"
+        className="text-left lg:px-40 sm:px-8 px-8 py-10"
       >
         <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold text-gray-800">
           <TextCursorFollower>Our Services</TextCursorFollower>

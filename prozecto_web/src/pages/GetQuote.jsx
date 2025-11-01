@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Navbar from "../components/Navbar";
 import api from "../services/api";
 
 const fadeUp = {
@@ -45,7 +46,9 @@ const GetQuote = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white px-[6vw] py-28 font-montserrat flex items-center justify-center">
+      <>
+        <Navbar />
+        <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white px-[6vw] py-28 font-montserrat flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4 text-green-600">Request Submitted!</h1>
           <p className="text-lg mb-6">Thank you for your request. We'll get back to you soon.</p>
@@ -56,11 +59,14 @@ const GetQuote = () => {
             Submit Another Request
           </button>
         </div>
-      </div>
+        </div>
+      </>
     );
   }
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white px-[6vw] py-28 font-montserrat">
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-950 text-gray-900 dark:text-white px-[6vw] py-28 font-montserrat">
       {/* Heading */}
       <motion.h1
         variants={fadeUp}
@@ -172,7 +178,8 @@ const GetQuote = () => {
           {loading ? 'Submitting...' : 'Submit Request'}
         </motion.button>
       </motion.form>
-    </div>
+      </div>
+    </>
   );
 };
 

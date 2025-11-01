@@ -1,12 +1,13 @@
 import React from "react";
-import "./rollingText.css"; // keep animation styles separate
+import "./rollingText.css";
 
-const RollingText = ({ text, className = "" }) => {
+const RollingText = ({ text }) => {
   return (
-    <span className={`rolling-text ${className}`}>
-      <span>{text}</span>
-      <span>{text}</span>
-    </span>
+    <span className="rolling-text">
+  <span className="text-gray-900 dark:text-white">{text}</span>
+  <span className="text-gray-900 dark:text-white">{text}</span>
+</span>
+
   );
 };
 

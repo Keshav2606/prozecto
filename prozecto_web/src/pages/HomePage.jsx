@@ -87,7 +87,7 @@ const Home = () => {
       </section>
 
       <MeterSection />
-      <Carousel/>
+      <div className="mb-20 mt-20"><Carousel/></div>
       <ServicesPage />
 
       {/* Why Choose Prozecto Section */}
