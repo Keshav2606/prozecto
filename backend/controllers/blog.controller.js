@@ -1,4 +1,4 @@
-const Blog = require('../models/Blog');
+const Blog = require("../models/Blog");
 
 const getBlogs = async (req, res) => {
   try {
@@ -11,8 +11,24 @@ const getBlogs = async (req, res) => {
 
 const createBlog = async (req, res) => {
   try {
-    const { title, authorName, category, featuredImage, content, excerpt, status } = req.body;
-    const blog = new Blog({ title, authorName, category, featuredImage, content, excerpt, status });
+    const {
+      title,
+      authorName,
+      category,
+      featuredImage,
+      content,
+      excerpt,
+      status,
+    } = req.body;
+    const blog = new Blog({
+      title,
+      authorName,
+      category,
+      featuredImage,
+      content,
+      excerpt,
+      status,
+    });
     await blog.save();
     res.status(201).json(blog);
   } catch (error) {
@@ -23,7 +39,9 @@ const createBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedBlog = await Blog.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedBlog = await Blog.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
     res.json(updatedBlog);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -34,7 +52,7 @@ const deleteBlog = async (req, res) => {
   try {
     const { id } = req.params;
     await Blog.findByIdAndDelete(id);
-    res.json({ message: 'Blog deleted successfully' });
+    res.json({ message: "Blog deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -44,5 +62,5 @@ module.exports = {
   getBlogs,
   createBlog,
   updateBlog,
-  deleteBlog
+  deleteBlog,
 };

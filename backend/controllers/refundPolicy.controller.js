@@ -1,4 +1,4 @@
-const RefundPolicy = require('../models/RefundPolicy');
+const RefundPolicy = require("../models/RefundPolicy");
 
 const getRefundPolicies = async (req, res) => {
   try {
@@ -23,7 +23,9 @@ const createRefundPolicy = async (req, res) => {
 const updateRefundPolicy = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedPolicy = await RefundPolicy.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedPolicy = await RefundPolicy.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
     res.json(updatedPolicy);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -33,5 +35,5 @@ const updateRefundPolicy = async (req, res) => {
 module.exports = {
   getRefundPolicies,
   createRefundPolicy,
-  updateRefundPolicy
+  updateRefundPolicy,
 };

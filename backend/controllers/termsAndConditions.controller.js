@@ -1,4 +1,4 @@
-const TermsAndConditions = require('../models/TermsAndConditions');
+const TermsAndConditions = require("../models/TermsAndConditions");
 
 const getTermsAndConditions = async (req, res) => {
   try {
@@ -23,7 +23,11 @@ const createTermsAndConditions = async (req, res) => {
 const updateTermsAndConditions = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedTerms = await TermsAndConditions.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedTerms = await TermsAndConditions.findByIdAndUpdate(
+      id,
+      req.body,
+      { new: true }
+    );
     res.json(updatedTerms);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -33,5 +37,5 @@ const updateTermsAndConditions = async (req, res) => {
 module.exports = {
   getTermsAndConditions,
   createTermsAndConditions,
-  updateTermsAndConditions
+  updateTermsAndConditions,
 };

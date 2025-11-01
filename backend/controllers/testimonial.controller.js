@@ -1,4 +1,4 @@
-const Testimonial = require('../models/Testimonial');
+const Testimonial = require("../models/Testimonial");
 
 const getTestimonials = async (req, res) => {
   try {
@@ -23,7 +23,11 @@ const createTestimonial = async (req, res) => {
 const updateTestimonial = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedTestimonial = await Testimonial.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedTestimonial = await Testimonial.findByIdAndUpdate(
+      id,
+      req.body,
+      { new: true }
+    );
     res.json(updatedTestimonial);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -34,7 +38,7 @@ const deleteTestimonial = async (req, res) => {
   try {
     const { id } = req.params;
     await Testimonial.findByIdAndDelete(id);
-    res.json({ message: 'Testimonial deleted successfully' });
+    res.json({ message: "Testimonial deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -44,5 +48,5 @@ module.exports = {
   getTestimonials,
   createTestimonial,
   updateTestimonial,
-  deleteTestimonial
+  deleteTestimonial,
 };

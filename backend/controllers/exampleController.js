@@ -1,12 +1,12 @@
 const getExample = (req, res) => {
-  res.json({ message: 'Example controller' });
+  res.json({ message: "Example controller" });
 };
 
 const postExample = (req, res) => {
-  res.json({ message: 'Data received', data: req.body });
+  res.json({ message: "Data received", data: req.body });
 };
 
 module.exports = {
   getExample,
-  postExample
+  postExample,
 };

@@ -1,4 +1,4 @@
-const UserAgreement = require('../models/UserAgreement');
+const UserAgreement = require("../models/UserAgreement");
 
 const getUserAgreements = async (req, res) => {
   try {
@@ -23,7 +23,11 @@ const createUserAgreement = async (req, res) => {
 const updateUserAgreement = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedAgreement = await UserAgreement.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedAgreement = await UserAgreement.findByIdAndUpdate(
+      id,
+      req.body,
+      { new: true }
+    );
     res.json(updatedAgreement);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -33,5 +37,5 @@ const updateUserAgreement = async (req, res) => {
 module.exports = {
   getUserAgreements,
   createUserAgreement,
-  updateUserAgreement
+  updateUserAgreement,
 };

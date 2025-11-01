@@ -1,4 +1,4 @@
-const QuoteRequest = require('../models/QuoteRequest');
+const QuoteRequest = require("../models/QuoteRequest");
 
 const getQuoteRequests = async (req, res) => {
   try {
@@ -12,7 +12,13 @@ const getQuoteRequests = async (req, res) => {
 const createQuoteRequest = async (req, res) => {
   try {
     const { fullName, email, phone, service, projectDetails } = req.body;
-    const request = new QuoteRequest({ fullName, email, phone, service, projectDetails });
+    const request = new QuoteRequest({
+      fullName,
+      email,
+      phone,
+      service,
+      projectDetails,
+    });
     await request.save();
     res.status(201).json(request);
   } catch (error) {
@@ -22,5 +28,5 @@ const createQuoteRequest = async (req, res) => {
 
 module.exports = {
   getQuoteRequests,
-  createQuoteRequest
+  createQuoteRequest,
 };

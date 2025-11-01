@@ -69,7 +69,7 @@ const Login = () => {
             component="h1"
             className="text-center font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2"
           >
-            Admin Portal
+           Prozecto Admin Portal
           </Typography>
           <Typography
             variant="body1"
@@ -128,11 +128,9 @@ const Login = () => {
                 },
               }}
             />
+          </div>
 
-            </div>
-
-            <div>
-
+          <div>
             <TextField
               name="password"
               type="password"
@@ -175,8 +173,7 @@ const Login = () => {
             sx={{
               background: "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)",
               "&:hover": {
-                background:
-                  "linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)",
+                background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)",
                 transform: "translateY(-1px)",
                 boxShadow: "0 20px 25px -5px rgba(59, 130, 246, 0.4)",
               },
@@ -196,29 +193,15 @@ const Login = () => {
           </Button>
         </form>
 
-        {/* Demo Credentials */}
-        <Box className="mt-8 p-4 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-xl">
-          <Typography variant="subtitle2" className="font-bold text-blue-800 mb-2 flex items-center gap-1">
-            <AdminPanelSettingsIcon sx={{ fontSize: 16 }} />
-            Test Credentials
+        <div className="mt-4">
+          {/* Security Note */}
+          <Typography
+            variant="caption"
+            className="block text-center text-gray-500 mt-6"
+          >
+            🔒 Secure admin access • Activity monitored
           </Typography>
-          <Box className="space-y-1 text-sm">
-            <Typography variant="body2" className="text-blue-700 font-medium">
-              Email: admin123@gmail.com
-            </Typography>
-            <Typography variant="body2" className="text-blue-700 font-medium">
-              Password: 123456@7A
-            </Typography>
-          </Box>
-        </Box>
-
-        {/* Security Note */}
-        <Typography
-          variant="caption"
-          className="block text-center text-gray-500 mt-6"
-        >
-          🔒 Secure admin access • Activity monitored
-        </Typography>
+        </div>
       </Paper>
     </Box>
   );

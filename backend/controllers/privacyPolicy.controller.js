@@ -1,4 +1,4 @@
-const PrivacyPolicy = require('../models/PrivacyPolicy');
+const PrivacyPolicy = require("../models/PrivacyPolicy");
 
 const getPrivacyPolicies = async (req, res) => {
   try {
@@ -23,7 +23,9 @@ const createPrivacyPolicy = async (req, res) => {
 const updatePrivacyPolicy = async (req, res) => {
   try {
     const { id } = req.params;
-    const updatedPolicy = await PrivacyPolicy.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedPolicy = await PrivacyPolicy.findByIdAndUpdate(id, req.body, {
+      new: true,
+    });
     res.json(updatedPolicy);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -33,5 +35,5 @@ const updatePrivacyPolicy = async (req, res) => {
 module.exports = {
   getPrivacyPolicies,
   createPrivacyPolicy,
-  updatePrivacyPolicy
+  updatePrivacyPolicy,
 };
