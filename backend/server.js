@@ -1,62 +1,63 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const connectDB = require('./lib/db');
-const { initializeAdmin } = require('./controllers/auth.controller');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const connectDB = require("./lib/db");
 
 // Connect to MongoDB
 connectDB();
-
-// Initialize default admin
-initializeAdmin();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // CORS configuration for frontend and admin
-app.use(cors({
-  origin: [process.env.FRONTEND_URL || 'http://localhost:5173', 'http://localhost:5174'],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      process.env.FRONTEND_URL || "http://localhost:5173",
+      process.env.ADMIN_URL || "http://localhost:5174",
+    ],
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use(cookieParser());
 
 // Routes
-const exampleRoutes = require('./routes/exampleRoutes');
-const testimonialRoutes = require('./routes/testimonial.route');
-const faqRoutes = require('./routes/faq.route');
-const blogRoutes = require('./routes/blog.route');
-const termsRoutes = require('./routes/termsAndConditions.route');
-const quoteRequestRoutes = require('./routes/quoteRequest.route');
-const privacyPolicyRoutes = require('./routes/privacyPolicy.route');
-const userAgreementRoutes = require('./routes/userAgreement.route');
-const refundPolicyRoutes = require('./routes/refundPolicy.route');
-const settingsRoutes = require('./routes/settings.route');
-const contactRoutes = require('./routes/contact.route');
-const authRoutes = require('./routes/auth.route');
-app.use('/api', exampleRoutes);
-app.use('/api', testimonialRoutes);
-app.use('/api', faqRoutes);
-app.use('/api', blogRoutes);
-app.use('/api', termsRoutes);
-app.use('/api', quoteRequestRoutes);
-app.use('/api', privacyPolicyRoutes);
-app.use('/api', userAgreementRoutes);
-app.use('/api', refundPolicyRoutes);
-app.use('/api', settingsRoutes);
-app.use('/api', contactRoutes);
-app.use('/api', authRoutes);
+const exampleRoutes = require("./routes/exampleRoutes");
+const testimonialRoutes = require("./routes/testimonial.route");
+const faqRoutes = require("./routes/faq.route");
+const blogRoutes = require("./routes/blog.route");
+const termsRoutes = require("./routes/termsAndConditions.route");
+const quoteRequestRoutes = require("./routes/quoteRequest.route");
+const privacyPolicyRoutes = require("./routes/privacyPolicy.route");
+const userAgreementRoutes = require("./routes/userAgreement.route");
+const refundPolicyRoutes = require("./routes/refundPolicy.route");
+const settingsRoutes = require("./routes/settings.route");
+const contactRoutes = require("./routes/contact.route");
+const authRoutes = require("./routes/auth.route");
+app.use("/api", exampleRoutes);
+app.use("/api", testimonialRoutes);
+app.use("/api", faqRoutes);
+app.use("/api", blogRoutes);
+app.use("/api", termsRoutes);
+app.use("/api", quoteRequestRoutes);
+app.use("/api", privacyPolicyRoutes);
+app.use("/api", userAgreementRoutes);
+app.use("/api", refundPolicyRoutes);
+app.use("/api", settingsRoutes);
+app.use("/api", contactRoutes);
+app.use("/api", authRoutes);
 
 // Basic route
-app.get('/', (req, res) => {
-  res.json({ message: 'Prozecto Backend API' });
+app.get("/", (req, res) => {
+  res.json({ message: "Prozecto Backend API" });
 });
 
 // Health check
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+app.get("/health", (req, res) => {
+  res.json({ status: "OK", timestamp: new Date().toISOString() });
 });
 
 app.listen(PORT, () => {
