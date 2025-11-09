@@ -1,8 +1,0 @@
-[
-    {
-        "name": "notification-queue.fifo",
-        "fifo": true,
-        "visibilityTimeout": 600,
-        "retentionPeriod": 4
-    }
-]
