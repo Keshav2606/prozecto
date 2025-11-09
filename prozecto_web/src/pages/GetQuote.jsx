@@ -145,13 +145,13 @@ const GetQuote = () => {
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-transparent focus:ring-2 focus:ring-blue-500 outline-none"
               required
             >
-              <option value="">Select a service</option>
-              <option value="web">Website Development</option>
-              <option value="app">App Development</option>
-              <option value="software">Software Solution</option>
-              <option value="design">Graphic Design</option>
-              <option value="video">Video Editing</option>
-              <option value="excel">Microsoft Excel Automation</option>
+              <option className="dark:text-white" value="">Select a service</option>
+              <option className="dark:text-black" value="web">Website Development</option>
+              <option className="dark:text-black" value="app">App Development</option>
+              <option className="dark:text-black" value="software">Software Solution</option>
+              <option className="dark:text-black" value="design">Graphic Design</option>
+              <option className="dark:text-black" value="video">Video Editing</option>
+              <option className="dark:text-black" value="excel">Microsoft Excel Automation</option>
             </select>
           </div>
         </div>
