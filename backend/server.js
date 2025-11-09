@@ -4,14 +4,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const connectDB = require("./lib/db");
 
-const ALLOWED_ORIGINS = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "http://127.0.0.1:5173",
-  "http://127.0.0.1:5174",
-  "http://frontend:5173",
-  "http://admin_frontend:5174",
-];
+const ALLOWED_ORIGINS = [process.env.FRONTEND_URL, process.env.ADMIN_URL];
 
 const app = express();
 const PORT = process.env.PORT || 5000;
